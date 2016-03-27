@@ -3,47 +3,48 @@ Open the ham and spam files, generate the list of distinct words
 For each file, find the count of those distinct words. Create a csv file and the feature vector of each file as a row
 """
 
-import pandas
 import os
-import glob
-import re
+import wordList
+import countWords
+import operator
+import csv
+from collections import Counter
 
 hamTrainRoot="/Users/dhruvmullick/CS/Project Work/spam-classifier/Dataset/training/ham"
 spamTrainRoot="/Users/dhruvmullick/CS/Project Work/spam-classifier/Dataset/training/spam"
-trainwords={}
-
-### Generate the words which are to be considered (using train)
-os.chdir(hamTrainRoot)
-L=glob.glob("*.txt")
-
-for file in L:
-    f=open(file,'r')
-    for line in f:
-        match=re.search(r'^Subject',line)
-        if not match:   #not subject
-            matchword=re.findall(r'[\w]+',line)
-            if matchword:
-                for word in matchword:
-                    if not (word[0]>='0' and word[0]<='9'):
-                        trainwords[word]=1
-
-os.chdir(spamTrainRoot)
-L=glob.glob("*.txt")
-
-for file in L:
-    f=open(file,'r')
-    for line in f:
-        match=re.search(r'^Subject',line)
-        if not match:   #not subject
-            matchword=re.findall(r'[\w]+',line)
-            if matchword:
-                for word in matchword:
-                    if not (word[0]>='0' and word[0]<='9'):
-                        trainwords[word]=1
+hamCVRoot="/Users/dhruvmullick/CS/Project Work/spam-classifier/Dataset/cv/ham"
+spamCVRoot="/Users/dhruvmullick/CS/Project Work/spam-classifier/Dataset/cv/spam"
+hamTestRoot="/Users/dhruvmullick/CS/Project Work/spam-classifier/Dataset/test/ham"
+spamTestRoot="/Users/dhruvmullick/CS/Project Work/spam-classifier/Dataset/test/spam"
 
 
-wordsConsidered=trainwords.keys()
+Words = wordList.genWordsConsidered(hamTrainRoot,spamTrainRoot)
+# print len(Words)
+# print Words
 
-# print len(wordsConsidered)
-wordsConsidered.sort()
-print wordsConsidered
+## generate count of words for train
+D1=countWords.getCountDict(hamTrainRoot,Words)
+# D1 = sorted(D1.items(), key=operator.itemgetter(1),reverse=True)
+D2=countWords.getCountDict(spamTrainRoot,Words)
+# D2 = sorted(D2.items(), key=operator.itemgetter(1),reverse=True)
+
+#merge the contents of the two dictionaries to get the frequency dictionary.
+a1=Counter(D1)
+a2=Counter(D2)
+D = a1+a2
+D = sorted(D.items(), key=operator.itemgetter(1),reverse=True)
+# print D
+
+#1000 highest frequency words
+
+os.chdir("/Users/dhruvmullick/CS/Project Work/spam-classifier/")
+f = open('1000words.txt','w')
+c=1
+for t in D:
+    w=t[0]
+    f.write(w)
+    f.write('\n')
+    c=c+1
+    if c>1000:
+        break
+f.close()
