@@ -1,9 +1,12 @@
 import os
 import glob
 import re
-from stemming.porter2 import stem
+import wordList
+#from stemming.porter2 import stem
 import nltk
 from nltk.corpus import stopwords
+from nltk import PorterStemmer
+
 
 stopWordDict={}
 
@@ -14,8 +17,9 @@ def processWord(word):
         return None
     if stopWordDict.has_key(word):  #remove stop words
         return None
-    word = stem(word)   #take stem
-    return word
+    PorterStemmer().stem_word(word)
+   # word = stem(word)   #take stem
+    #return word
 
 def getCountDict(Path,Words):
 
@@ -42,4 +46,3 @@ def getCountDict(Path,Words):
                       wordDict[word]=wordDict[word]+1
 
     return wordDict
-

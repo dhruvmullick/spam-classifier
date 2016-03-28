@@ -1,8 +1,9 @@
+import sys
 import pandas
 import os
 import glob
 import re
-from stemming.porter2 import stem
+#from stemming.porter2 import stem
 import nltk
 from nltk.corpus import stopwords
 
@@ -15,8 +16,8 @@ def processWord(word):
         return None
     if stopWordDict.has_key(word):  #remove stop words
         return None
-    word = stem(word)   #take stem
-    return word
+    #word = stem(word)   #take stem
+    #return word
 
 
 ### Generate the words which are to be considered (using train)
