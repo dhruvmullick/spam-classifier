@@ -6,6 +6,7 @@ For each file, find the count of those distinct words. Create a csv file and the
 import os
 import wordList
 import countWords
+import dictionaryCount
 import operator
 import csv
 from collections import Counter
