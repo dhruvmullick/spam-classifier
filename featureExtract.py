@@ -13,6 +13,7 @@ csvtrainpath="/Users/dhruvmullick/CS/Project Work/spam-classifier/mycsvtrain.csv
 csvcvpath="/Users/dhruvmullick/CS/Project Work/spam-classifier/mycsvcv.csv"
 csvtestpath="/Users/dhruvmullick/CS/Project Work/spam-classifier/mycsvtest.csv"
 
+
 def extractAndWriteFeature(dir,csvpath, v):
 
     global dictionary, stopWordDict
@@ -41,7 +42,7 @@ def extractAndWriteFeature(dir,csvpath, v):
         L=d.values()
         L+=[v]
         # print L
-        out = csv.writer(open(csvpath,"ab"), delimiter=',',quoting=csv.QUOTE_ALL)
+        out = csv.writer(open(csvpath,"ab"), delimiter=',')
         out.writerow(L)
 
 

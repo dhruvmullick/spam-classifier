@@ -6,7 +6,6 @@ For each file, find the count of those distinct words. Create a csv file and the
 import os
 import wordList
 import countWords
-import dictionaryCount
 import operator
 import csv
 from collections import Counter
@@ -19,24 +18,25 @@ hamTestRoot="/Users/dhruvmullick/CS/Project Work/spam-classifier/Dataset/test/ha
 spamTestRoot="/Users/dhruvmullick/CS/Project Work/spam-classifier/Dataset/test/spam"
 
 
+# this was pretty unnecessary. We are taking count of the words in D1 and D2 anyway. On merging them, we would get this.
 Words = wordList.genWordsConsidered(hamTrainRoot,spamTrainRoot)
 # print len(Words)
 # print Words
 
-## generate count of words for train
-D1=countWords.getCountDict(hamTrainRoot,Words)
+# generate count of words for train
+D1 = countWords.getCountDict(hamTrainRoot,Words)
 # D1 = sorted(D1.items(), key=operator.itemgetter(1),reverse=True)
-D2=countWords.getCountDict(spamTrainRoot,Words)
+D2 = countWords.getCountDict(spamTrainRoot,Words)
 # D2 = sorted(D2.items(), key=operator.itemgetter(1),reverse=True)
 
-#merge the contents of the two dictionaries to get the frequency dictionary.
-a1=Counter(D1)
-a2=Counter(D2)
+# merge the contents of the two dictionaries to get the frequency dictionary.
+a1 = Counter(D1)
+a2 = Counter(D2)
 D = a1+a2
 D = sorted(D.items(), key=operator.itemgetter(1),reverse=True)
 # print D
 
-#1000 highest frequency words
+# 1000 highest frequency words
 
 os.chdir("/Users/dhruvmullick/CS/Project Work/spam-classifier/")
 f = open('1000words.txt','w')
