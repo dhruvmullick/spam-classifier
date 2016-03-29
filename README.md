@@ -14,6 +14,7 @@ Note that for the words:
   1. Stop Words : We have omitted the most commonly used words (a, the etc).
   2. Stemming : We have used stemming.
   3. Non alphabet characters have been removed.
+
 ------
 
 Now Logistic regression is applied taking the 1000 most frequently used words as features.
