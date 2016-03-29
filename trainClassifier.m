@@ -14,7 +14,7 @@ function [optTheta] = trainClassifier()
   % disp (size(initialTheta))
 
   options=optimset('GradObj','on','MaxIter',100);
-  [optTheta,functionVal] = fminunc(@(t)(costfunction(t,X,y)),initialTheta,options);
+  [optTheta,functionVal] = fminunc(@(t)(costfunction_train(t,X,y)),initialTheta,options);
 
   % h = sigmoid ( X * theta)
 end

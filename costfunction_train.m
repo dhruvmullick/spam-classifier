@@ -1,4 +1,4 @@
-function [J,gradient] = costfunction(theta , X, y)
+function [J,gradient] = costfunction_train(theta , X, y)
 
   m= length(y);
   h=sigmoid(X*theta);
