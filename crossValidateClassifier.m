@@ -1,4 +1,4 @@
-function [J,predacc] = crossValidateClassifier(theta)
+function [J,predacc , X ,y] = crossValidateClassifier(theta)
 
   data =csvread('mycsvcv.csv');
   X= data(:,[1:1000]);
