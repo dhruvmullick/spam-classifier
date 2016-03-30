@@ -1,6 +1,6 @@
 % Train the classifer. Return theta
 
-function [optTheta] = trainClassifier(lambda)
+function [optTheta,X,y] = trainClassifier(lambda)
 
   data =csvread('mycsvtrain.csv');
   X= data(:,[1:1000]);

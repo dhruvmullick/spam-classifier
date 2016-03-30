@@ -1,8 +1,10 @@
 lambda=1;
-theta = trainClassifier(lambda);
+[theta ,X,y] = trainClassifier(lambda);
 %disp(theta);
-[Jcv,predacc ,X ,y] = crossValidateClassifier(theta,lambda);
+[Jcv,predacc ,Xcv ,ycv,m2] = crossValidateClassifier(theta,lambda);
 predacc = predacc*100
-[precision , recall,F1Score]= precisionandrecall(theta , X ,y,lambda)
+
+%[precision , recall,F1Score]= precisionandrecall(theta , Xcv ,ycv,lambda)
+learningCurves(X,y,Xcv,y,lambda);
 
 

@@ -1,4 +1,4 @@
-function [J,predY] = costfunction_test(theta , X, y,lambda)
+function [J,predY,grad] = costfunction_test(theta , X, y,lambda)
 
   m= length(y);
   h=sigmoid(X*theta);
@@ -9,6 +9,7 @@ function [J,predY] = costfunction_test(theta , X, y,lambda)
   correction = sum(thetaT .^ 2) * (lambda / (2 * m));
 
   J = -sum (temp1 + temp2)/m + correction;
+  grad = (X' * (sigmoid(X * theta) - y)) * (1/m) + thetaT * (lambda / m);
   predY=zeros(m,1);
   for i=1:m
     if h(i)>=0.5
