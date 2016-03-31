@@ -1,18 +1,14 @@
-function [error_train , error_cv] = learningCurves(X ,y , Xcv,ycv,lambda)
-  [m, n] = size(X);
-  error_train = zeros(m, 1);
-  error_val   = zeros(m, 1);
-  val_size = size(Xcv,1);
-  % X = [ones(m, 1) X];
-  for i=1:m
-    [theta] = trainClassifier(lambda);
-    [error_train(i), grad] = regularizedCostFunction(theta , X ,y,lambda);
-    [error_val(i), grad] = costfunction_test(theta ,Xcv ,ycv , lambda);
-  end
-  plot(1:m, error_train, 1:m, error_val);
-  title('Learning curve for linear regression')
-  legend('Train', 'Cross Validation')
-  xlabel('Number of training examples')
-  ylabel('Error')
-  axis([0 13 0 150])
+function [error_train , error_cv , m] = learningCurves(X ,y ,Xcv,ycv)
+[m, n] = size(X);
+%error_train = zeros(m, 1);
+%error_cv   = zeros(m, 1);
+error_train = zeros(2, 1);
+error_cv   = zeros(2, 1);
+
+for i=1:2
+[theta] = train(X(1:i,:),y(1:i));
+[error_train(i), grad] = costfunction_train(theta , X(1:i,:), y(1:i));
+[error_cv(i), grad] = costfunction_test2(theta , Xcv,ycv);
+end
+
 end
