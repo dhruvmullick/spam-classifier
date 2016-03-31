@@ -1,12 +1,12 @@
-function [error_train , error_cv , m] = learningCurves(X ,y ,Xcv,ycv,lambda)
+function [error_train , error_cv , m] = learningCurves(X ,y ,Xcv,ycv)
 [m, n] = size(X);
 error_train = zeros(m, 1);
-error_val   = zeros(m, 1);
-%X = [ones(m, 1) X];
-for i=1:m
-[theta] = train(X(1:i, :), y(1:i),lambda);
-[error_train(i), grad] = regularizedCostFunction(theta , X(1:i, :), y(1:i),lambda);
-[error_val(i), grad] = costfunction_test(theta , Xcv(1:i,:),ycv(1:i) , lambda);
+error_cv   = zeros(m, 1);
+
+for i=1:2
+[theta] = train(X(1:i,:),y(1:i));
+[error_train(i), grad] = costfunction_train(theta , X(1:i,:), y(1:i));
+[error_cv(i), grad] = costfunction_test2(theta , Xcv,ycv);
 end
 
 end

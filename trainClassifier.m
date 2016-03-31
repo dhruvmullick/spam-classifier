@@ -1,13 +1,13 @@
 % Train the classifer. Return theta
 
 function [optTheta,X,y] = trainClassifier(lambda)
-
   data =csvread('mycsvtrain.csv');
   X= data(:,[1:1000]);
   y= data( : ,1001);
-  [m, n] = size(X);
-  % Add intercept term to x and X_test
+  [m,n]=size(X);
+ % Add intercept term to x and X_test
   X = [ones(m, 1) X];
+  
   % Initialize fitting parameters
   initialTheta = zeros(n + 1, 1);
   
