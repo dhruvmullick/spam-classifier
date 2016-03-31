@@ -1,12 +1,12 @@
 % calculate precision and recall
-function [J,precision , recall , F1Score] = precisionandrecall(theta)
+function [precision , recall , F1Score] = precisionandrecall(theta,X ,y,lambda)
 
-  data =csvread('mycsvcv.csv');
-  X= data(:,[1:1000]);
-  y= data( : ,1001);
+ % data =csvread('mycsvcv.csv');
+  %X= data(:,[1:1000]);
+  %y= data( : ,1001);
   [m, n] = size(X);
-  X = [ones(m, 1) X];
-  [J,predY]=costfunction_test(theta,X,y);
+  %X = [ones(m, 1) X];
+  [J,predY,grad]=costfunction_test(theta,X,y,lambda);
   tp=0   %true positive
   tn=0   %true negative
   fp=0   %false positive
