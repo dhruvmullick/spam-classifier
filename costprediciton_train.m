@@ -1,5 +1,6 @@
-function [J,grad] = costfunction_train(theta , X, y)
+function [J,grad] = costprediciton_train(theta , X, y)
   [m,n]=size(X);
+  % disp(size(X));
   h=sigmoid(X * theta);
   temp1 = y .* log(h);
   temp2 = (1-y) .* log(1- h);

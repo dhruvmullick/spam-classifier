@@ -1,4 +1,4 @@
-%regularized cost 
+%regularized cost
 function [J, grad] = regularizedCostFunction(theta, X, y,lambda)
 [m,n]=size(X);
 h=sigmoid( X * theta);
