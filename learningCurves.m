@@ -7,9 +7,10 @@ function [error_train , error_cv , m] = learningCurves(X ,y ,Xcv,ycv,lambda)
 
   for j=1:9
     disp(j)
-    [theta,J] = trainClassifier(X(1:(j*100),:),y(1:(j*100)),lambda);
-    [error_train(j), grad] = costprediciton_train(theta , X(1:(j*100),:), y(1:(j*100)));
-    [error_cv(j), grad] = costfunction_test2(theta , Xcv(1:(j*100),:),ycv(1:(j*100)));
+    [theta,J] = trainClassifier(X(1:(j*400),:),y(1:(j*400)),lambda);
+    [error_train(j), grad] = costprediciton_train(theta , X(1:(j*400),:), y(1:(j*400)));
+    [error_cv(j), grad] = costfunction_test2(theta ,Xcv,ycv);
+    error_train(j)=log(error_train(j));
   end
 
 end

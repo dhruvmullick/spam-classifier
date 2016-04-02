@@ -1,5 +1,5 @@
-lambda=1;
 
+lambda=1;
 %read the training set
 data =csvread('mycsvtrain.csv');
 X= data(:,[1:1000]);
@@ -11,14 +11,13 @@ X = [ones(m, 1) X];
 data =csvread('mycsvcv.csv');
 Xcv= data(:,[1:1000]);
 ycv= data( : ,1001);
-[m, n] = size(Xcv);
-Xcv = [ones(m, 1) Xcv];
+[m1, n1] = size(Xcv);
+Xcv = [ones(m1, 1) Xcv];
 
 %predict value of theta and find the cost of CV/test
-[theta] = trainClassifier(X,y,lambda);
-[Jcv,predacc] = cv_testPrediction(Xcv,ycv,theta,lambda);
-
-predacc = predacc*100
+%[theta] = trainClassifier(X,y,lambda);
+%[Jcv,predacc] = cv_testPrediction(Xcv,ycv,theta,lambda);
+%predacc = predacc*100
 %[precision , recall,F1Score]= precisionandrecall(theta , Xcv ,ycv,lambda)
 [error_train,error_cv ,m]=learningCurves(X,y,Xcv,ycv,lambda);
 %
@@ -28,4 +27,4 @@ title('Learning curve for logistic regression')
 legend('Train', 'Cross Validation')
 xlabel('Number of training examples')
 ylabel('Error')
-% axis([0 13 0 150])
+
